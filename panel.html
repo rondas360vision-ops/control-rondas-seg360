@@ -23,29 +23,37 @@
   .dot-live{width:7px;height:7px;border-radius:50%;background:#4ade80;animation:pulse 1.6s infinite;}
   @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.3;}}
   .wrap{max-width:1180px;margin:0 auto;padding:28px 20px 60px;}
-  .config{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:16px 18px;margin-bottom:24px;display:flex;gap:10px;flex-wrap:wrap;align-items:center;}
+  .config{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:16px 18px;margin-bottom:20px;display:flex;gap:10px;flex-wrap:wrap;align-items:center;}
   .config input{flex:1;min-width:260px;font-family:'IBM Plex Mono',monospace;font-size:12.5px;padding:9px 10px;border:1px solid var(--line);border-radius:6px;}
   .config button{background:var(--accent);color:#fff;border:none;border-radius:6px;padding:9px 18px;font-weight:500;cursor:pointer;font-family:'Space Grotesk',sans-serif;}
   .config button:hover{background:var(--accent-dark);}
   .config button.secundario{background:transparent;color:var(--ink);border:1px solid var(--ink);}
   .config button.secundario:hover{background:var(--ink);color:#fff;}
-  .cards{display:grid;grid-template-columns:repeat(auto-fit, minmax(160px,1fr));gap:14px;margin-bottom:18px;}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px 18px 16px;position:relative;overflow:hidden;}
+
+  .tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:20px;border-bottom:2px solid var(--line);}
+  .tab{padding:9px 16px;font-size:13px;font-weight:500;color:var(--ink-soft);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;white-space:nowrap;}
+  .tab:hover{color:var(--ink);}
+  .tab.activa{color:var(--ink);border-bottom-color:var(--accent);font-weight:700;}
+  .tab .tab-alerta{display:inline-block;background:var(--accent);color:#fff;font-size:9px;border-radius:10px;padding:1px 6px;margin-left:5px;font-weight:700;}
+
+  .cards{display:grid;grid-template-columns:repeat(auto-fit, minmax(150px,1fr));gap:14px;margin-bottom:18px;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 16px 14px;position:relative;overflow:hidden;}
   .card::before{content:"";position:absolute;top:0;left:0;width:4px;height:100%;background:var(--accent);}
   .card.ok::before{background:var(--ok);}
   .card.warn::before{background:var(--warn);}
-  .card .label{font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:var(--ink-soft);font-weight:600;margin-bottom:8px;}
-  .card .valor{font-size:32px;font-weight:700;line-height:1;}
-  .card .sub{font-size:11.5px;color:var(--ink-soft);margin-top:6px;}
+  .card .label{font-size:10.5px;text-transform:uppercase;letter-spacing:0.06em;color:var(--ink-soft);font-weight:600;margin-bottom:6px;}
+  .card .valor{font-size:28px;font-weight:700;line-height:1;}
+  .card .sub{font-size:11px;color:var(--ink-soft);margin-top:5px;}
+
   .barra-cobertura{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin-bottom:24px;}
   .barra-cobertura .label{font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:var(--ink-soft);font-weight:600;margin-bottom:10px;}
   .barra-fondo{background:#EEE;border-radius:20px;height:14px;overflow:hidden;}
   .barra-relleno{background:linear-gradient(90deg, var(--ok), #2f9e52);height:100%;border-radius:20px;transition:width 0.6s ease;}
+
   .secciones{display:grid;grid-template-columns:1.2fr 1fr;gap:20px;margin-bottom:20px;}
   @media (max-width:900px){ .secciones{grid-template-columns:1fr;} }
   .bloque{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:20px;}
-  .bloque h2{font-size:14px;margin:0 0 14px;text-transform:uppercase;letter-spacing:0.04em;color:var(--ink-soft);display:flex;align-items:center;justify-content:space-between;}
-  .bloque h2 button{font-size:10.5px;padding:4px 10px;background:transparent;border:1px solid var(--line);border-radius:6px;color:var(--ink-soft);cursor:pointer;font-family:'Space Grotesk',sans-serif;}
+  .bloque h2{font-size:14px;margin:0 0 14px;text-transform:uppercase;letter-spacing:0.04em;color:var(--ink-soft);}
   table{width:100%;border-collapse:collapse;font-size:12.5px;}
   th{text-align:left;font-size:10.5px;text-transform:uppercase;color:var(--ink-soft);padding:6px 8px;border-bottom:1px solid var(--line);}
   td{padding:7px 8px;border-bottom:1px solid #F0F0F0;vertical-align:middle;}
@@ -62,6 +70,16 @@
   .ranking-num{width:22px;height:22px;border-radius:50%;background:var(--ink);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
   .ranking-nombre{flex:1;font-size:13px;}
   .ranking-cant{font-size:13px;font-weight:700;color:var(--accent);}
+
+  .grid-instalaciones{display:grid;grid-template-columns:repeat(auto-fill, minmax(230px,1fr));gap:14px;margin-bottom:24px;}
+  .mini-card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px;cursor:pointer;transition:box-shadow 0.15s, transform 0.15s;}
+  .mini-card:hover{box-shadow:0 4px 14px rgba(0,0,0,0.08);transform:translateY(-2px);}
+  .mini-card.tiene-atraso{border-color:var(--accent);}
+  .mini-card .mc-titulo{font-size:13.5px;font-weight:700;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;}
+  .mini-card .mc-stats{display:flex;gap:14px;font-size:11px;color:var(--ink-soft);}
+  .mini-card .mc-stats b{display:block;font-size:17px;color:var(--ink);font-weight:700;}
+  .mini-card .mc-stats .mc-atraso b{color:var(--accent);}
+
   footer{margin-top:34px;text-align:center;font-size:11px;color:var(--ink-soft);line-height:1.6;}
   footer strong{color:var(--ink);}
 </style>
@@ -81,6 +99,8 @@
     <button class="secundario" onclick="exportarCsv()" id="btnExportar" style="display:none;">⬇ Exportar CSV</button>
   </div>
 
+  <div id="tabsWrap" class="tabs" style="display:none;"></div>
+
   <div id="contenido">
     <div class="estado-msg">Ingrese la URL de su aplicación web y presione "Cargar panel" para ver los datos en vivo.</div>
   </div>
@@ -91,6 +111,7 @@
 <script>
 var STORAGE_KEY = 'seg360_panel_backend';
 var ultimoDato = null;
+var pestañaActiva = 'todas';
 var intervaloRefresco = null;
 var intervaloContador = null;
 
@@ -113,7 +134,10 @@ function cargarPanel(silencioso){
     .then(function(r){ return r.json(); })
     .then(function(d){
       ultimoDato = d;
-      pintarPanel(d);
+      // Si la pestaña activa ya no existe (instalación retirada), vuelve a "Todas"
+      if(pestañaActiva !== 'todas' && !buscarInstalacion(pestañaActiva)) pestañaActiva = 'todas';
+      dibujarTabs(d);
+      dibujarVistaActiva();
       document.getElementById('btnExportar').style.display = 'inline-block';
       document.getElementById('indicadorAuto').style.display = 'inline-flex';
       iniciarAutoActualizacion();
@@ -126,63 +150,116 @@ function cargarPanel(silencioso){
 function iniciarAutoActualizacion(){
   if(intervaloRefresco) clearInterval(intervaloRefresco);
   if(intervaloContador) clearInterval(intervaloContador);
-  // Cada 20s trae datos frescos del servidor (nuevas rondas marcadas por otros guardias)
   intervaloRefresco = setInterval(function(){ cargarPanel(true); }, 20000);
-  // Cada 1s recalcula las cuentas regresivas usando la hora del propio navegador
-  intervaloContador = setInterval(function(){ if(ultimoDato) actualizarContadores(); }, 1000);
+  intervaloContador = setInterval(function(){ if(ultimoDato) dibujarVistaActiva(); }, 1000);
 }
 
-function pintarPanel(d){
+function buscarInstalacion(nombre){
+  if(!ultimoDato) return null;
+  for(var i=0;i<ultimoDato.instalaciones.length;i++){
+    if(ultimoDato.instalaciones[i].nombre === nombre) return ultimoDato.instalaciones[i];
+  }
+  return null;
+}
+
+function dibujarTabs(d){
   var badge = document.getElementById('badgeLicencia');
   badge.style.display = 'inline-block';
-  if(d.licenciaVigente){
+  if(d.global.licenciaVigente){
     badge.className = 'estado-licencia lic-ok';
-    badge.textContent = d.licenciaVence ? ('Licencia vigente hasta ' + formatearFecha(d.licenciaVence)) : 'Licencia activa (sin vencimiento configurado)';
+    badge.textContent = d.global.licenciaVence ? ('Licencia vigente hasta ' + formatearFecha(d.global.licenciaVence)) : 'Licencia activa (sin vencimiento configurado)';
   } else {
     badge.className = 'estado-licencia lic-vencida';
     badge.textContent = 'Licencia vencida';
   }
 
-  var cards = ''
-    + tarjeta('Total de puntos', d.total, '')
-    + tarjeta('Marcados', d.marcados, '', 'ok')
-    + tarjeta('Pendientes', d.pendientes, '', 'warn')
-    + tarjeta('Atrasados', d.atrasados, d.atrasados > 0 ? '¡Requieren atención!' : 'Todo al día')
-    + tarjeta('% Cobertura', d.cobertura + '%', '')
-    + tarjeta('Guardias activos', d.guardiasActivos, '');
+  var tabsWrap = document.getElementById('tabsWrap');
+  tabsWrap.style.display = 'flex';
+  var html = '<div class="tab' + (pestañaActiva==='todas'?' activa':'') + '" onclick="cambiarTab(\'todas\')">Todas' +
+             (d.global.atrasados > 0 ? '<span class="tab-alerta">' + d.global.atrasados + '</span>' : '') + '</div>';
+  d.instalaciones.forEach(function(inst){
+    html += '<div class="tab' + (pestañaActiva===inst.nombre?' activa':'') + '" onclick="cambiarTab(\'' + inst.nombre.replace(/'/g,"\\'") + '\')">' +
+            escapeHtml(inst.nombre) + (inst.atrasados > 0 ? '<span class="tab-alerta">' + inst.atrasados + '</span>' : '') + '</div>';
+  });
+  tabsWrap.innerHTML = html;
+}
 
-  var pendientesHtml = (d.pendientesLista && d.pendientesLista.length)
-    ? tablaPendientes(d.pendientesLista, d.toleranciaAntesMin, d.toleranciaAtrasoMin)
-    : '<div class="vacio">No hay puntos pendientes 🎉</div>';
+function cambiarTab(nombre){
+  pestañaActiva = nombre;
+  dibujarTabs(ultimoDato);
+  dibujarVistaActiva();
+}
 
-  var marcadosHtml = (d.marcadosLista && d.marcadosLista.length)
-    ? tablaMarcados(d.marcadosLista)
-    : '<div class="vacio">Todavía no hay rondas marcadas.</div>';
+function dibujarVistaActiva(){
+  if(!ultimoDato) return;
+  if(pestañaActiva === 'todas'){
+    dibujarVistaGlobal(ultimoDato);
+  } else {
+    var inst = buscarInstalacion(pestañaActiva);
+    if(!inst){ pestañaActiva = 'todas'; dibujarTabs(ultimoDato); dibujarVistaGlobal(ultimoDato); return; }
+    dibujarVistaInstalacion(inst);
+  }
+}
 
-  var rankingHtml = (d.rankingGuardiasHoy && d.rankingGuardiasHoy.length)
-    ? rankingGuardias(d.rankingGuardiasHoy)
-    : '<div class="vacio">Ningún guardia ha marcado rondas hoy todavía.</div>';
+function dibujarVistaGlobal(d){
+  var g = d.global;
+  var cards = tarjeta('Total de puntos', g.total, '')
+    + tarjeta('Marcados', g.marcados, '', 'ok')
+    + tarjeta('Pendientes', g.pendientes, '', 'warn')
+    + tarjeta('Atrasados', g.atrasados, g.atrasados > 0 ? '¡Requieren atención!' : 'Todo al día')
+    + tarjeta('% Cobertura', g.cobertura + '%', '')
+    + tarjeta('Guardias activos', g.guardiasActivos, '');
+
+  var gridInstalaciones = d.instalaciones.map(function(inst){
+    var claseAtraso = inst.atrasados > 0 ? ' tiene-atraso' : '';
+    return '<div class="mini-card' + claseAtraso + '" onclick="cambiarTab(\'' + inst.nombre.replace(/'/g,"\\'") + '\')">' +
+      '<div class="mc-titulo">' + escapeHtml(inst.nombre) + (inst.atrasados > 0 ? '<span class="badge badge-atrasado">' + inst.atrasados + ' atraso(s)</span>' : '<span class="badge badge-abierto">' + inst.cobertura + '%</span>') + '</div>' +
+      '<div class="mc-stats">' +
+        '<div>Total<b>' + inst.total + '</b></div>' +
+        '<div>Marcados<b>' + inst.marcados + '</b></div>' +
+        '<div>Pendientes<b>' + inst.pendientes + '</b></div>' +
+        '<div class="mc-atraso">Atrasados<b>' + inst.atrasados + '</b></div>' +
+      '</div>' +
+    '</div>';
+  }).join('');
 
   document.getElementById('contenido').innerHTML =
     '<div class="cards">' + cards + '</div>' +
-    '<div class="barra-cobertura">' +
-      '<div class="label">Cobertura general</div>' +
-      '<div class="barra-fondo"><div class="barra-relleno" style="width:' + d.cobertura + '%;"></div></div>' +
+    '<div class="barra-cobertura"><div class="label">Cobertura general de todas las instalaciones</div>' +
+      '<div class="barra-fondo"><div class="barra-relleno" style="width:' + g.cobertura + '%;"></div></div>' +
+    '</div>' +
+    '<div class="bloque" style="margin-bottom:24px;"><h2>Instalaciones — vista general</h2>' +
+      (gridInstalaciones ? '<div class="grid-instalaciones">' + gridInstalaciones + '</div>' : '<div class="vacio">No hay instalaciones activas cargadas todavía.</div>') +
+    '</div>';
+}
+
+function dibujarVistaInstalacion(inst){
+  var cards = tarjeta('Total de puntos', inst.total, '')
+    + tarjeta('Marcados', inst.marcados, '', 'ok')
+    + tarjeta('Pendientes', inst.pendientes, '', 'warn')
+    + tarjeta('Atrasados', inst.atrasados, inst.atrasados > 0 ? '¡Requieren atención!' : 'Todo al día')
+    + tarjeta('% Cobertura', inst.cobertura + '%', '');
+
+  var pendientesHtml = inst.pendientesLista.length
+    ? tablaPendientes(inst.pendientesLista, ultimoDato.global.toleranciaAntesMin, ultimoDato.global.toleranciaAtrasoMin)
+    : '<div class="vacio">No hay puntos pendientes en esta instalación 🎉</div>';
+  var marcadosHtml = inst.marcadosLista.length
+    ? tablaMarcados(inst.marcadosLista)
+    : '<div class="vacio">Todavía no hay rondas marcadas aquí.</div>';
+  var rankingHtml = inst.rankingGuardiasHoy.length
+    ? rankingGuardias(inst.rankingGuardiasHoy)
+    : '<div class="vacio">Ningún guardia ha marcado rondas aquí hoy.</div>';
+
+  document.getElementById('contenido').innerHTML =
+    '<div class="cards">' + cards + '</div>' +
+    '<div class="barra-cobertura"><div class="label">Cobertura de ' + escapeHtml(inst.nombre) + '</div>' +
+      '<div class="barra-fondo"><div class="barra-relleno" style="width:' + inst.cobertura + '%;"></div></div>' +
     '</div>' +
     '<div class="secciones">' +
       '<div class="bloque"><h2>Puntos pendientes</h2><div id="tablaPendientes">' + pendientesHtml + '</div></div>' +
       '<div class="bloque"><h2>Ranking de guardias — hoy</h2>' + rankingHtml + '</div>' +
     '</div>' +
     '<div class="bloque"><h2>Últimas rondas marcadas</h2>' + marcadosHtml + '</div>';
-}
-
-function actualizarContadores(){
-  if(!ultimoDato || !ultimoDato.pendientesLista) return;
-  var cont = document.getElementById('tablaPendientes');
-  if(!cont) return;
-  cont.innerHTML = ultimoDato.pendientesLista.length
-    ? tablaPendientes(ultimoDato.pendientesLista, ultimoDato.toleranciaAntesMin, ultimoDato.toleranciaAtrasoMin)
-    : '<div class="vacio">No hay puntos pendientes 🎉</div>';
 }
 
 function estadoHorario(horaProgramada, toleranciaAntes, toleranciaAtraso){
@@ -231,18 +308,21 @@ function tarjeta(label, valor, sub, clase){
 
 function exportarCsv(){
   if(!ultimoDato) return;
-  var filas = ['Tipo,ID,Nombre,Detalle,Estado_Hora'];
-  (ultimoDato.pendientesLista||[]).forEach(function(p){
-    var est = estadoHorario(p.horaProgramada, ultimoDato.toleranciaAntesMin, ultimoDato.toleranciaAtrasoMin);
-    filas.push('Pendiente,"' + p.id + '","' + (p.nombre||'').replace(/"/g,'""') + '","' + (p.direccion||'').replace(/"/g,'""') + '","' + est.texto.replace(/"/g,'""') + '"');
-  });
-  (ultimoDato.marcadosLista||[]).forEach(function(p){
-    filas.push('Marcado,"' + p.id + '","' + (p.nombre||'').replace(/"/g,'""') + '","' + (p.guardia||'') + '","' + (p.hora||'') + '"');
+  var filas = ['Instalacion,Tipo,ID,Nombre,Detalle,Estado_Hora'];
+  var lista = pestañaActiva === 'todas' ? ultimoDato.instalaciones : [buscarInstalacion(pestañaActiva)];
+  lista.forEach(function(inst){
+    (inst.pendientesLista||[]).forEach(function(p){
+      var est = estadoHorario(p.horaProgramada, ultimoDato.global.toleranciaAntesMin, ultimoDato.global.toleranciaAtrasoMin);
+      filas.push('"' + inst.nombre + '",Pendiente,"' + p.id + '","' + (p.nombre||'').replace(/"/g,'""') + '","' + (p.direccion||'').replace(/"/g,'""') + '","' + est.texto.replace(/"/g,'""') + '"');
+    });
+    (inst.marcadosLista||[]).forEach(function(p){
+      filas.push('"' + inst.nombre + '",Marcado,"' + p.id + '","' + (p.nombre||'').replace(/"/g,'""') + '","' + (p.guardia||'') + '","' + (p.hora||'') + '"');
+    });
   });
   var blob = new Blob(['\uFEFF' + filas.join('\n')], {type:'text/csv;charset=utf-8'});
   var link = document.createElement('a');
   link.href = URL.createObjectURL(blob);
-  link.download = 'panel_rondas_seg360_' + new Date().toISOString().slice(0,10) + '.csv';
+  link.download = 'panel_rondas_seg360_' + (pestañaActiva==='todas'?'todas':pestañaActiva) + '_' + new Date().toISOString().slice(0,10) + '.csv';
   link.click();
 }
 
