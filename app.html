@@ -35,7 +35,7 @@
 
 <script>
 /* =================== CONFIGURACIÓN =================== */
-var BACKEND_URL = "PEGUE_AQUI_LA_URL_DE_APPS_SCRIPT";
+var BACKEND_URL = "https://script.google.com/macros/s/AKfycbyZgC_KxbaVtpckCXzyXZQtfk5wSnRGb-ZZPHElr4HL_WmMZTvEO6sKVrVyAQGQsCdbAg/exec";
 /* ======================================================= */
 
 var params = new URLSearchParams(window.location.search);
@@ -60,12 +60,24 @@ if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('sw.js').catch(function () {});
 }
 
-function toBase64(file) {
-  return new Promise(function (res, rej) {
-    var r = new FileReader();
-    r.onload = function () { res(r.result); };
-    r.onerror = rej;
-    r.readAsDataURL(file);
+// Reduce la foto (tamaño y calidad) antes de enviarla, para que suba rápido
+// incluso con datos móviles o WiFi lenta. De varios MB pasa a unos cientos de KB.
+function comprimirImagen(file, maxDim, calidad) {
+  return new Promise(function (resolve, reject) {
+    var img = new Image();
+    var url = URL.createObjectURL(file);
+    img.onload = function () {
+      var w = img.width, h = img.height;
+      if (w > h && w > maxDim) { h = Math.round(h * maxDim / w); w = maxDim; }
+      else if (h >= w && h > maxDim) { w = Math.round(w * maxDim / h); h = maxDim; }
+      var canvas = document.createElement('canvas');
+      canvas.width = w; canvas.height = h;
+      canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+      URL.revokeObjectURL(url);
+      resolve(canvas.toDataURL('image/jpeg', calidad));
+    };
+    img.onerror = function () { URL.revokeObjectURL(url); reject(new Error('No se pudo procesar la imagen')); };
+    img.src = url;
   });
 }
 
@@ -97,8 +109,9 @@ function enviar() {
   msg.textContent = 'Obteniendo ubicación...';
 
   geoPromise.then(function (coords) {
-    msg.textContent = 'Enviando...';
-    return (fotoInput ? toBase64(fotoInput) : Promise.resolve('')).then(function (b64) {
+    msg.textContent = fotoInput ? 'Comprimiendo foto...' : 'Enviando...';
+    return (fotoInput ? comprimirImagen(fotoInput, 1200, 0.65) : Promise.resolve('')).then(function (b64) {
+      msg.textContent = 'Enviando...';
       var payload = { id: idPunto, t: token, codigo: codigo, lat: coords.lat, lon: coords.lon, foto: b64 };
       return enviarAlBackend(payload).then(function (d) {
         msg.style.color = d.ok ? '#1a7d3c' : '#C21E2B';
